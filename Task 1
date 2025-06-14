@@ -1,0 +1,50 @@
+tasks = []
+
+def add_task():
+    task = input("Enter a new task: ")
+    tasks.append(task)
+    print("Task added successfully!")
+
+def view_tasks():
+    if not tasks:
+        print("No tasks found.")
+    else:
+        print("\nYour Tasks:")
+        for i, task in enumerate(tasks, 1):
+            print(f"{i}. {task}")
+
+def update_task():
+    view_tasks()
+    if not tasks:
+        return
+    try:
+        task_number = int(input("Enter the task number to update: "))
+        if 1 <= task_number <= len(tasks):
+            new_task = input("Enter the new task: ")
+            tasks[task_number - 1] = new_task
+            print("Task updated successfully!")
+        else:
+            print("Invalid task number.")
+    except ValueError:
+        print("Please enter a valid number.")
+
+while True:
+    print("\n--- SIMPLE TO-DO LIST ---")
+    print("1. Add Task")
+    print("2. View Tasks")
+    print("3. Update Task")
+    print("4. Exit")
+
+    choice = input("Choose an option (1-4): ")
+
+    if choice == "1":
+        add_task()
+    elif choice == "2":
+        view_tasks()
+    elif choice == "3":
+        update_task()
+    elif choice == "4":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Try again.")
